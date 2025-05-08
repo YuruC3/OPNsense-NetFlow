@@ -1,0 +1,24 @@
+[Unit]
+Description=Netflow to InfluxDB script
+After=multi-user.target network.target network-online.target
+ 
+[Service]
+Type=simple
+Restart=on-failure
+# EnvironmentFile=/etc/NetFlux/netflow.env
+# User=myuser
+WorkingDirectory=/etc/NetFlux//
+ExecStart=/etc/NetFlux//venv/bin/python3 /etc/NetFlux//HAOSnetflow.py --serve-in-foreground
+# ExecStart=/usr/bin/python3 /usr/bin/NetFlux/INFLUXDBmthrd.py
+StandardInput=tty-force
+
+# Log file will be create if it doesn't exist
+StandardOutput=append:/var/log/NetFlowInflux.log
+StandardError=append:/var/log/NetFlowInflux.errlog
+
+# StandardOutput=syslog
+# StandardError=syslog
+# SyslogIdentifier=NetFlowInflux
+ 
+[Install]
+WantedBy=multi-user.target

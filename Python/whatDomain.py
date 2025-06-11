@@ -18,7 +18,24 @@ def ermWhatATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Dom
 
     #result = dns_query.dns_lookup("example.com")
     #result = Nslookup.dns_lookup(inpDomainNameOrSomething)
-    result = dns.resolver.resolve(inpDomainNameOrSomething, 'A')
+    try:
+        result = dns.resolver.resolve(inpDomainNameOrSomething, 'A')
+    except dns.resolver.NoAnswer:
+        print("\nDNS ERROR")
+        print("No answer from dns server.\n")
+        return 1
+    except dns.resolver.NoNameservers:
+        print("\nDNS ERROR")
+        print("All nameservers failed to answer the query.\n Fix your DNS servers.\n")
+        return 1
+    except dns.resolver.NXDOMAIN:
+        print("\nDNS ERROR")
+        print("The DNS query name does not exist.\n")
+        return 1
+    except dns.resolver.LifetimeTimeout:
+        print("\nDNS ERROR")
+        print("The DNS querry got timed out.\nVerify that your FW or PiHole isn't blocking requests for that domain.\n")
+        return 1
     for i, something in enumerate(result):
         outDict[i] = something.to_text()
         # i += 1
@@ -40,7 +57,24 @@ def ermWhatAAAATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "
 
     #result = dns_query.dns_lookup("example.com")
     #result = Nslookup.dns_lookup(inpDomainNameOrSomething)
-    result = dns.resolver.resolve(inpDomainNameOrSomething, 'AAAA')
+    try:
+        result = dns.resolver.resolve(inpDomainNameOrSomething, 'AAAA')
+    except dns.resolver.NoAnswer:
+        print("\nDNS ERROR")
+        print("No answer from dns server.\n")
+        return 1
+    except dns.resolver.NoNameservers:
+        print("\nDNS ERROR")
+        print("All nameservers failed to answer the query.\n Fix your DNS servers.\n")
+        return 1
+    except dns.resolver.NXDOMAIN:
+        print("\nDNS ERROR")
+        print("The DNS query name does not exist.\n")
+        return 1
+    except dns.resolver.LifetimeTimeout:
+        print("\nDNS ERROR")
+        print("The DNS querry got timed out.\nVerify that your FW or PiHole isn't blocking requests for that domain.\n")
+        return 1
     for i, something in enumerate(result):
         outDict[i] = something.to_text()
         # i += 1
@@ -65,7 +99,24 @@ def ermWhatPTRTheIpFromDomainYaCrazy(inpIpAddressOrSomething: Annotated[str, "IP
 
     #result = dns_query.dns_lookup("example.com")
     #result = Nslookup.dns_lookup(inpDomainNameOrSomething)
-    result = dns.resolver.resolve(whatToCheck, 'PTR')
+    try:
+        result = dns.resolver.resolve(whatToCheck, 'PTR')
+    except dns.resolver.NoAnswer:
+        print("\nDNS ERROR")
+        print("No answer from dns server.\n")
+        return 1
+    except dns.resolver.NoNameservers:
+        print("\nDNS ERROR")
+        print("All nameservers failed to answer the query.\n Fix your DNS servers.\n")
+        return 1
+    except dns.resolver.NXDOMAIN:
+        print("\nDNS ERROR")
+        print("The DNS query name does not exist.\n")
+        return 1
+    except dns.resolver.LifetimeTimeout:
+        print("\nDNS ERROR")
+        print("The DNS querry got timed out.\nVerify that your FW or PiHole isn't blocking requests for that domain.\n")
+        return 1
     for i, something in enumerate(result):
         outDict[i] = something.to_text()
         # i += 1

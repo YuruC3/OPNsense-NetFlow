@@ -14,5 +14,15 @@ def ermWhatTheCountry(inpIpAddress: Annotated[str, "Some IP address that ya want
     except Exception as errrrrr:
         return f"Error: {errrrrr}"
 
+def ermWhatTheISP(inpIpAddress: Annotated[str, "Some IP address that ya want to get ISP for"]):
+    try:
+        skibidi = ip2loc_db.get_all(inpIpAddress)
+
+        #return rec.country_long  # Full country name, e.g. "Sweden"
+        return skibidi.isp
+
+    except Exception as errrrrr:
+        return f"Error: {errrrrr}"
+
 #print(ermWhatTheCountry("65.109.142.32"))
 

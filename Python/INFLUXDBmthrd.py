@@ -87,6 +87,7 @@ def process_flow(i, entry):
         .field("dstMask", inEntry["DST_MASK"])
         .field("dstCntr", ermWhatTheCountry(str(inEntry["IPV4_DST_ADDR"])))
         .field("srcCntr", ermWhatTheCountry(str(inEntry["IPV4_SRC_ADDR"])))
+        .tag("ISP", ermWhatTheISP(str(inEntry["IPV4_SRC_ADDR"])))
     )
 
     print("----------------")

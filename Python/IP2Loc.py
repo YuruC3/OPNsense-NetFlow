@@ -2,9 +2,9 @@ import IP2Location
 from typing import Optional, Annotated
 
 # Load database once
-ip2loc_db = IP2Location.IP2Location("IP2LOCATION-LITE-DB9.BIN")
+ip2loc_db: IP2Location = IP2Location.IP2Location("IP2LOCATION-LITE-DB9.BIN")
 
-def ermWhatTheCountry(inpIpAddress: Annotated[str, "Some IP address that ya want to get country for"]):
+def ermWhatTheCountry(inpIpAddress: Annotated[str, "Some IP address that ya want to get country for"]) -> str:
     try:
         skibidi = ip2loc_db.get_all(inpIpAddress)
 
@@ -14,7 +14,7 @@ def ermWhatTheCountry(inpIpAddress: Annotated[str, "Some IP address that ya want
     except Exception as errrrrr:
         return f"Error: {errrrrr}"
 
-def ermWhatTheISP(inpIpAddress: Annotated[str, "Some IP address that ya want to get ISP for"]):
+def ermWhatTheISP(inpIpAddress: Annotated[str, "Some IP address that ya want to get ISP for"]) -> str:
     try:
         skibidi = ip2loc_db.get_all(inpIpAddress)
 

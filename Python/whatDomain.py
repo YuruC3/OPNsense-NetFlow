@@ -1,10 +1,11 @@
 #from nslookup import Nslookup
 from typing import Optional, Annotated
 import dns, dns.resolver
+from typing import Final
 
 # https://www.codeunderscored.com/nslookup-python/
 
-def ermWhatATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Domain name to lookup IP for"]):
+def ermWhatATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Domain name to lookup IP for"]) -> dict:
     #dns_query = Nslookup()
     """
     Tells you what IPv4 address/es a domain point to.
@@ -14,7 +15,7 @@ def ermWhatATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Dom
     """
 
     # i = 0
-    outDict = {} 
+    outDict: dict = {} 
 
     #result = dns_query.dns_lookup("example.com")
     #result = Nslookup.dns_lookup(inpDomainNameOrSomething)
@@ -42,7 +43,7 @@ def ermWhatATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Dom
 
     return outDict
 
-def ermWhatAAAATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Domain name to lookup IP for"]):
+def ermWhatAAAATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "Domain name to lookup IP for"]) -> dict:
     #dns_query = Nslookup()
     """
     Tells you what IPv6 address/es a domain point to.
@@ -53,7 +54,7 @@ def ermWhatAAAATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "
 
 
     # i = 0
-    outDict = {} 
+    outDict: dict = {} 
 
     #result = dns_query.dns_lookup("example.com")
     #result = Nslookup.dns_lookup(inpDomainNameOrSomething)
@@ -82,7 +83,7 @@ def ermWhatAAAATheIpFromDomainYaCrazy(inpDomainNameOrSomething: Annotated[str, "
     return outDict
 
 
-def ermWhatPTRTheIpFromDomainYaCrazy(inpIpAddressOrSomething: Annotated[str, "IP address to lookup domain for"]):
+def ermWhatPTRTheIpFromDomainYaCrazy(inpIpAddressOrSomething: Annotated[str, "IP address to lookup domain for"]) -> dict:
     #dns_query = Nslookup()
     """
     Tells you what IPv6 address/es a domain point to.
@@ -91,16 +92,16 @@ def ermWhatPTRTheIpFromDomainYaCrazy(inpIpAddressOrSomething: Annotated[str, "IP
 
     """
 
-    whatToCheck = inpIpAddressOrSomething + ".in-addr.arpa"
+    WHATTOCHECK: Final[str] = inpIpAddressOrSomething + ".in-addr.arpa"
 
 
     # i = 0
-    outDict = {}
+    outDict: dict = {}
 
     #result = dns_query.dns_lookup("example.com")
     #result = Nslookup.dns_lookup(inpDomainNameOrSomething)
     try:
-        result = dns.resolver.resolve(whatToCheck, 'PTR')
+        result = dns.resolver.resolve(WHATTOCHECK, 'PTR')
     except dns.resolver.NoAnswer:
         print("\nDNS ERROR")
         print("No answer from dns server.\n")

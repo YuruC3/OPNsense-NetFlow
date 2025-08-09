@@ -6,30 +6,31 @@ from proto import manWhatTheProto
 from IP2Loc import ermWhatTheCountry
 from whatDomain import ermWhatATheIpFromDomainYaCrazy, ermWhatAAAATheIpFromDomainYaCrazy
 from concurrent.futures import ThreadPoolExecutor
+from typing import Final
 
 # Netentry preconf
-WHAT_THE_NETFLOW_PORT = 2055
-WHAT_THE_NETFLOW_IP = "0.0.0.0"
+WHAT_THE_NETFLOW_PORT: Final[int] = 2055
+WHAT_THE_NETFLOW_IP: Final[str] = "0.0.0.0"
 
 # INFLUXDB config
-token = "apg1gysUeCcxdcRTMmosJTenbEppmUNi9rXlANDB2oNadBdWAu2GVTDc_q_dyo0iyYsckKaOvPRm6ba2NK0y_A=="
+INFLUXTOKEN: Final[str] = "apg1gysUeCcxdcRTMmosJTenbEppmUNi9rXlANDB2oNadBdWAu2GVTDc_q_dyo0iyYsckKaOvPRm6ba2NK0y_A=="
 #token = os.getenv("INFLUX_TOKEN")
-bucket = "NETFLOW-7"
+INFLUXBUCKET: Final[str] = "NETFLOW-7"
 # bucket = os.getenv("INFLUX_BUCKET")
-org = "staging"
+INFLUXORG: Final[str] = "staging"
 # org = os.getenv("INFLUX_ORG")
-url = "http://localhost:8086"
+INFLUXURL: Final[str] = "http://localhost:8086"
 # url = os.getenv("INFLUX_URL")
-measurement = "testNetFlowPython"
+INFLUXMEASUREMENT: Final[str] = "testNetFlowPython"
 # measurement = os.getenv("INFLUX_MEASUREMENT")
-MACHINE_TAG = "YUKIKAZE"
+MACHINE_TAG: FINAL[str] = "YUKIKAZE"
 # MACHINE_TAG = os.getenv("INFLUX_MACHINE_TAG")
-ROUTER_TAG = "HQ"
+ROUTER_TAG: Final[str] = "HQ"
 # ROUTER_TAG = os.getenv("INFLUX_ROUTER_TAG")
-INFLX_SEPARATE_POINTS = 0.05
+INFLX_SEPARATE_POINTS: Final[float] = 0.05
 
 # Initialize InfluxDB client and influxdb API
-inflxdb_client = influxdb_client.InfluxDBClient(url=url, token=token, org=org)
+inflxdb_client = influxdb_client.InfluxDBClient(url=INFLUXURL, token=INFLUXTOKEN, org=INFLUXORG)
 #write_api = inflxdb_client.write_api(write_options=SYNCHRONOUS)
 write_api = inflxdb_client.write_api(write_options=WriteOptions(batch_size=500, flush_interval=1000))
 
@@ -64,7 +65,7 @@ def process_flow(i, entry):
 
     # Prep InfluxDB data
     inflxdb_Data_To_Send = (
-        influxdb_client.Point(f"{measurement}-script")
+        influxdb_client.Point(f"{INFLUXMEASUREMENT}-script")
         .tag("MACHINE", MACHINE_TAG)
         .tag("ROUTER", ROUTER_TAG)
         .field("dstAddr", inEntry["IPV4_DST_ADDR"])
@@ -140,7 +141,7 @@ with ThreadPoolExecutor(max_workers=8) as executor:
             bigDict[i] = inEntry
 
         # Send data to InfluxDB
-        write_api.write(bucket=bucket, org=org, record=inflxdb_Datazz_To_Send)
+        write_api.write(bucket=INFLUXBUCKET, org=INFLUXORG, record=inflxdb_Datazz_To_Send)
         time.sleep(INFLX_SEPARATE_POINTS) # separate points 
 
         print(f"{len(bigDict)} <--- This many entrys")

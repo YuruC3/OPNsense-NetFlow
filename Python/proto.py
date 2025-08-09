@@ -153,7 +153,7 @@ PROTO_MAP = {
 }
 
 
-def manWhatTheProto(inpProtoNumbrMaybe: Annotated[int, "Protocol number goes here"]):
+def manWhatTheProto(inpProtoNumbrMaybe: Annotated[int, "Protocol number goes here"]) -> int:
 
     if inpProtoNumbrMaybe <= 145: 
         return PROTO_MAP.get(inpProtoNumbrMaybe)
@@ -167,7 +167,7 @@ def manWhatTheProto(inpProtoNumbrMaybe: Annotated[int, "Protocol number goes her
     elif inpProtoNumbrMaybe not in PROTO_MAP:
         return inpProtoNumbrMaybe
     else:
-        return "no"
+        return -1
 
     #outPotentialProtoNameIfItExistsInInternalList = PROTO_MAP.get(inpProtoNumbrMaybe)
 

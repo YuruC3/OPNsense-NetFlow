@@ -2,7 +2,7 @@ import IP2Location
 from typing import Optional, Annotated
 
 # Load database once
-ip2loc_db: IP2Location = IP2Location.IP2Location("IP2LOCATION-LITE-DB9.BIN")
+ip2loc_db: IP2Location = IP2Location.IP2Location("IP2LOCATION-LITE-DB9.BIN", "SHARED_MEMORY")
 
 def ermWhatTheCountry(inpIpAddress: Annotated[str, "Some IP address that ya want to get country for"]) -> str:
     try:

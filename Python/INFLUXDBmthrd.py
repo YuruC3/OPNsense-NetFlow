@@ -3,7 +3,7 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS, ASYNCHRONOUS, WriteOptions
 from datetime import timedelta
 from proto import manWhatTheProto
-from IP2Loc import ermWhatTheCountry
+from IP2Loc import ermWhatTheCountry  #, ermWhatTheISP
 from whatDomain import ermWhatATheIpFromDomainYaCrazy, ermWhatAAAATheIpFromDomainYaCrazy
 from concurrent.futures import ThreadPoolExecutor
 from typing import Final
@@ -88,7 +88,8 @@ def process_flow(i, entry):
         .field("dstMask", inEntry["DST_MASK"])
         .field("dstCntr", ermWhatTheCountry(str(inEntry["IPV4_DST_ADDR"])))
         .field("srcCntr", ermWhatTheCountry(str(inEntry["IPV4_SRC_ADDR"])))
-        .tag("ISP", ermWhatTheISP(str(inEntry["IPV4_SRC_ADDR"])))
+        # .tag("srcISP", ermWhatTheISP(str(inEntry["IPV4_SRC_ADDR"])))
+        # .tag("dstISP", ermWhatTheISP(str(inEntry["IPV4_DST_ADDR"])))
     )
 
     print("----------------")

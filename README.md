@@ -1,5 +1,7 @@
 # NetFlowV5 collector and InfluxDB and Grafana
 
+Here I'll try integrating both NetFlow and sFlow into my python code so that either can be choosen. 
+
 It works.
 
 ## Python script

@@ -8,7 +8,7 @@ WORKDIR /netflowParser
 
 # Copy over IP2Loc, INFLUXDB, proto and wahtDomain
 
-COPY ../Code/* /netflowParser/
+COPY ./Code/* /netflowParser/
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./updateIP2Lbin.sh /netflowParser/
 

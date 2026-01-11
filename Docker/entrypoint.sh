@@ -26,5 +26,13 @@ fi
 # Fix permissions (only do this on /app/API)
 chown -R "$PUID:$PGID" "$CHOWNPATH"
 
+# Create an updater process
+(
+while true; do
+    sleep 12h
+    su-exec "$PUID:$PGID" "/bin/sh" "$CHOWNPATH"/updateIP2Lbin.sh || true
+done
+) &
+
 # Drop privileges & run command
 exec su-exec "$PUID:$PGID" "$@"

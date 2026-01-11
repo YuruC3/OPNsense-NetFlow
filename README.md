@@ -2,6 +2,14 @@
 
 It works.
 
+## IP2Location-DB
+
+To get IP2Locatio-Lite-DB go to [lite.ip2location](https://lite.ip2location.com/) and create a account.
+
+Then you need to get your **Token**. You can find it [here](https://lite.ip2location.com/database-download) and under **Download Token**
+
+Then pass that token as ```IP2LOC_TOKEN``` environment variable to the container
+
 ## Python script
 Install required modules with 
 ```
@@ -17,4 +25,5 @@ Second is when there are a ton of flows that need to be collected. More flows ak
 
 ## sysctl.d
 Place it in /etc/sysctl.d/ and apply with ```sysctl -p```
+
 

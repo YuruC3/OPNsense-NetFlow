@@ -1,6 +1,4 @@
 netflow==0.12.2
-#socket==
-#json==
 influxdb-client==1.48.0
 ipaddress==1.0.23
 typing==3.7.4.3

@@ -5,7 +5,7 @@
 # -----------------------------
 
 # Change this URL to your personal download link if needed
-DOWNLOAD_URL="https://www.ip2location.com/download/?token=MkyoKFL854ID0FOWoeTWVRsw0SVcbA7ey6tvuzHchsIQ6AMGy7YXIDfwrEEA4Ozn&file=DB9LITEBIN"
+DOWNLOAD_URL="https://www.ip2location.com/download/?token=yes&file=DB9LITEBIN"
 
 # Define filenames
 ZIP_FILE="IP2LOCATION-LITE-DB9.BIN.ZIP"

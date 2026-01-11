@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk update && \
-    apk add python3 py3-pip su-exec curl wget && \
+    apk add python3 py3-pip su-exec curl wget unzip && \
     mkdir -p /netflowParser
 
 WORKDIR /netflowParser
@@ -10,6 +10,7 @@ WORKDIR /netflowParser
 
 COPY ../Code/* /netflowParser/
 COPY ./entrypoint.sh /entrypoint.sh
+COPY ./updateIP2Lbin.sh /netflowParser/
 
 RUN chmod +x /entrypoint.sh
 

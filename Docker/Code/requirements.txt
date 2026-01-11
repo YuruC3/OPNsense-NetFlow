@@ -1,0 +1,6 @@
+netflow==0.12.2
+influxdb-client==1.48.0
+ipaddress==1.0.23
+typing==3.7.4.3
+IP2Location==8.10.5
+nslookup==1.8.1
